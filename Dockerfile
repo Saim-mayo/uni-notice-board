@@ -1,5 +1,14 @@
-FROM nginx:alpine 
-RUN rm -rf /usr/share/nginx/html*
-COPY src/ /usr/share/nginx/html/
-COPY styles /usr/share/nginx/styles/
-EXPOSE 80
+FROM node:18-alpine
+
+WORKDIR /app
+
+COPY package*.json ./
+RUN npm install
+
+COPY . .
+
+RUN npm run build
+
+EXPOSE 1234
+
+CMD ["npm", "run", "start"]
