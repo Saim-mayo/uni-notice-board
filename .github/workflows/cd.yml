@@ -12,8 +12,7 @@ jobs:
     environment: development
 
     steps:
-          - name: Trigger Deployment
+      - name: Trigger Deployment
         run: |
           echo "Triggering deployment"
           curl -X POST "${{ secrets.RENDER_CALLBACK_URL }}" || true
-
